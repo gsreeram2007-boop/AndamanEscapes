@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Andaman Escapes — Luxury Island Tours from Port Blair</title>
+  <meta name="description" content="Experience the pristine beauty of Andaman & Nicobar Islands with Andaman Escapes — your trusted travel partner based in Port Blair."/>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES & RESET
+    ============================================================ */
+    :root {
+      --ocean-deep:   #051e35;
+      --ocean-mid:    #0a3a5c;
+      --ocean-teal:   #0e7fa3;
+      --turquoise:    #00c2d4;
+      --sand:         #f2c27d;
+      --coral:        #e8714a;
+      --white:        #fafcff;
+      --off-white:    #eef4f8;
+      --text-dark:    #0d1f2d;
+      --text-muted:   #5a7a8a;
+      --card-bg:      #ffffff;
+      --shadow-sm:    0 2px 12px rgba(5,30,53,0.08);
+      --shadow-md:    0 8px 40px rgba(5,30,53,0.14);
+      --shadow-lg:    0 20px 60px rgba(5,30,53,0.2);
+      --radius:       16px;
+      --radius-sm:    8px;
+      --transition:   0.35s cubic-bezier(0.4,0,0.2,1);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Outfit', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      background: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a  { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ============================================================
+       UTILITY CLASSES
+    ============================================================ */
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 96px 0; }
+    .section-sm { padding: 64px 0; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--turquoise);
+      margin-bottom: 12px;
+    }
+    .badge::before {
+      content: ''; width: 24px; height: 2px;
+      background: var(--turquoise); border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600; line-height: 1.15;
+      color: var(--ocean-deep);
+    }
+    .section-title em {
+      font-style: italic; color: var(--ocean-teal);
+    }
+    .section-subtitle {
+      color: var(--text-muted); font-size: 1.05rem;
+      max-width: 580px; margin-top: 12px;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 50px;
+      font-size: 0.95rem; font-weight: 600;
+      transition: all var(--transition); white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--coral); color: #fff;
+      box-shadow: 0 4px 20px rgba(232,113,74,0.4);
+    }
+    .btn-primary:hover {
+      background: #d9623b;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(232,113,74,0.5);
+    }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.7);
+      color: #fff; backdrop-filter: blur(4px);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+    .btn-dark {
+      background: var(--ocean-deep); color: #fff;
+    }
+    .btn-dark:hover {
+      background: var(--ocean-mid);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      background: transparent; color: var(--ocean-teal);
+      border: 2px solid var(--ocean-teal);
+    }
+    .btn-ghost:hover {
+      background: var(--ocean-teal); color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       LOADING SCREEN
+    ============================================================ */
+    #loading-screen {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--ocean-deep);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 20px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loading-screen.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-display);
+      font-size: 2rem; color: #fff; font-weight: 600;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    .loader-bar {
+      width: 200px; height: 3px; background: rgba(255,255,255,0.2);
+      border-radius: 3px; overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%; width: 0;
+      background: linear-gradient(90deg, var(--turquoise), var(--coral));
+      border-radius: 3px;
+      animation: loading 1.8s ease forwards;
+    }
+    @keyframes loading { to { width: 100%; } }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 20px 0;
+      transition: all var(--transition);
+    }
+    #navbar.scrolled {
+      background: rgba(5,30,53,0.97);
+      backdrop-filter: blur(16px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 700; color: #fff;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo span { color: var(--turquoise); }
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--turquoise), var(--coral));
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-size: 1rem;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.85); font-size: 0.92rem;
+      font-weight: 500; position: relative;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--turquoise);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+    .nav-cta .btn { padding: 10px 22px; font-size: 0.88rem; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2px;
+      background: #fff; border-radius: 2px;
+      transition: all var(--transition);
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none; position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+      background: var(--ocean-deep);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 32px;
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .mobile-menu.open { display: flex; opacity: 1; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2.2rem; color: #fff; font-weight: 600;
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--turquoise); }
+    .mobile-close {
+      position: absolute; top: 24px; right: 24px;
+      color: #fff; font-size: 2rem; cursor: pointer;
+    }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    #hero {
+      min-height: 100vh; position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+
+    /* Hero slider */
+    .hero-slides {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.2s ease;
+    }
+    .hero-slide.active { opacity: 1; }
+
+    /* Beautiful gradient overlays matching each slide mood */
+    .hero-slide::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(5,30,53,0.75) 0%,
+        rgba(10,58,92,0.5) 50%,
+        rgba(0,194,212,0.2) 100%
+      );
+    }
+
+    /* Slide 1 — Radhanagar Beach */
+    .slide-1 {
+      background-image:
+        linear-gradient(135deg, rgba(5,30,53,0.9), rgba(0,194,212,0.3)),
+        url("https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1600&q=80");
+    }
+    /* Slide 2 — Underwater/turquoise */
+    .slide-2 {
+      background-image:
+        linear-gradient(135deg, rgba(5,30,53,0.85), rgba(14,127,163,0.4)),
+        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80");
+    }
+    /* Slide 3 — Tropical island */
+    .slide-3 {
+      background-image:
+        linear-gradient(135deg, rgba(5,30,53,0.8), rgba(0,0,0,0.3)),
+        url("https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1600&q=80");
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding-top: 100px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50px; padding: 8px 18px;
+      color: #fff; font-size: 0.82rem; font-weight: 500;
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--turquoise);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 700; color: #fff; line-height: 1.05;
+      animation: fadeUp 0.9s ease 0.1s forwards; opacity: 0;
+    }
+    .hero-title em { font-style: italic; color: var(--turquoise); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.8);
+      max-width: 520px; margin-top: 20px; margin-bottom: 40px;
+      animation: fadeUp 1s ease 0.2s forwards; opacity: 0;
+    }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      animation: fadeUp 1s ease 0.3s forwards; opacity: 0;
+    }
+    .hero-stats {
+      display: flex; gap: 48px; margin-top: 64px;
+      animation: fadeUp 1s ease 0.5s forwards; opacity: 0;
+    }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem; font-weight: 700; color: #fff; line-height: 1;
+    }
+    .hero-stat-num span { color: var(--turquoise); }
+    .hero-stat-label { color: rgba(255,255,255,0.65); font-size: 0.85rem; margin-top: 4px; }
+
+    /* Slider dots */
+    .hero-dots {
+      position: absolute; bottom: 32px; left: 50%;
+      transform: translateX(-50%); z-index: 2;
+      display: flex; gap: 10px;
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.4); cursor: pointer;
+      transition: all var(--transition);
+    }
+    .dot.active { background: #fff; width: 28px; border-radius: 4px; }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute; bottom: 32px; right: 32px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6));
+      animation: scrollAnim 1.5s ease-in-out infinite;
+    }
+    .scroll-text {
+      color: rgba(255,255,255,0.5); font-size: 0.7rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      writing-mode: vertical-lr;
+    }
+    @keyframes scrollAnim { 0%,100%{transform:scaleY(1)} 50%{transform:scaleY(0.6)} }
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(24px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       SEARCH/QUICK BOOK BAR
+    ============================================================ */
+    .quick-book {
+      background: #fff;
+      box-shadow: var(--shadow-lg);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-top: -60px; position: relative; z-index: 5;
+    }
+    .quick-book-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr) auto;
+      gap: 16px; align-items: end;
+    }
+    .qb-field label {
+      font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text-muted); display: block; margin-bottom: 6px;
+    }
+    .qb-field input, .qb-field select {
+      width: 100%; padding: 12px 14px;
+      border: 1.5px solid #dde6ed;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body); font-size: 0.95rem;
+      color: var(--text-dark); background: var(--off-white);
+      transition: border-color var(--transition);
+      appearance: none;
+    }
+    .qb-field input:focus, .qb-field select:focus {
+      outline: none; border-color: var(--ocean-teal);
+    }
+
+    /* ============================================================
+       SERVICES SECTION
+    ============================================================ */
+    #services { background: var(--off-white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px; margin-top: 48px;
+    }
+    .service-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+      cursor: default;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--ocean-teal), var(--turquoise));
+      transform: scaleX(0); transition: transform var(--transition);
+      transform-origin: left;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--off-white), #daeef8);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+      transition: all var(--transition);
+    }
+    .service-card:hover .service-icon {
+      background: linear-gradient(135deg, var(--ocean-teal), var(--turquoise));
+    }
+    .service-icon svg { color: var(--ocean-teal); transition: color var(--transition); }
+    .service-card:hover .service-icon svg { color: #fff; }
+    .service-name {
+      font-weight: 600; font-size: 0.95rem;
+      color: var(--ocean-deep); margin-bottom: 6px;
+    }
+    .service-desc { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* ============================================================
+       DESTINATIONS SECTION
+    ============================================================ */
+    #destinations { background: var(--white); }
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px; margin-top: 48px;
+    }
+    .dest-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+      cursor: pointer;
+      position: relative;
+    }
+    .dest-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .dest-img {
+      height: 240px; background-size: cover;
+      background-position: center;
+      position: relative;
+      transition: transform 0.6s ease;
+    }
+    .dest-card:hover .dest-img { transform: scale(1.06); }
+    .dest-img-wrap { overflow: hidden; height: 240px; }
+    .dest-badge {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--coral); color: #fff;
+      font-size: 0.72rem; font-weight: 600; padding: 4px 12px;
+      border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .dest-info { padding: 20px; }
+    .dest-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 600;
+      color: var(--ocean-deep); margin-bottom: 8px;
+    }
+    .dest-info p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px; }
+    .dest-info .btn { padding: 10px 20px; font-size: 0.85rem; }
+    .dest-meta {
+      display: flex; align-items: center; gap: 16px;
+      font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px;
+    }
+    .dest-meta span { display: flex; align-items: center; gap: 4px; }
+
+    /* ============================================================
+       PACKAGES SECTION
+    ============================================================ */
+    #packages { background: var(--ocean-deep); }
+    #packages .section-title,
+    #packages .badge { color: #fff; }
+    #packages .badge { color: var(--turquoise); }
+    #packages .section-title em { color: var(--sand); }
+    #packages .section-subtitle { color: rgba(255,255,255,0.65); }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px; margin-top: 48px;
+    }
+
+    /* Skeleton loader */
+    .pkg-skeleton {
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      height: 420px;
+      animation: shimmer 1.5s infinite;
+    }
+    @keyframes shimmer {
+      0%,100%{opacity:0.5} 50%{opacity:1}
+    }
+
+    .pkg-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all var(--transition);
+      position: relative;
+    }
+    .pkg-card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .pkg-popular {
+      position: absolute; top: 16px; right: 16px;
+      background: var(--coral); color: #fff;
+      font-size: 0.7rem; font-weight: 700; padding: 4px 12px;
+      border-radius: 50px; text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .pkg-header {
+      background: linear-gradient(135deg, var(--ocean-mid), var(--ocean-teal));
+      padding: 28px; text-align: center;
+    }
+    .pkg-duration {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 600; color: #fff;
+    }
+    .pkg-name { font-size: 0.82rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
+    .pkg-price-wrap { margin-top: 14px; }
+    .pkg-price {
+      font-family: var(--font-display);
+      font-size: 2.2rem; font-weight: 700; color: var(--sand);
+    }
+    .pkg-price-note { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+
+    .pkg-body { padding: 24px; }
+    .pkg-features { display: flex; flex-direction: column; gap: 10px; }
+    .pkg-feat {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; color: rgba(255,255,255,0.8);
+    }
+    .pkg-feat svg { color: var(--turquoise); flex-shrink: 0; }
+    .pkg-card .btn {
+      width: 100%; margin-top: 20px;
+      justify-content: center;
+    }
+
+    /* ============================================================
+       ACTIVITIES SECTION
+    ============================================================ */
+    #activities { background: var(--white); }
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px; margin-top: 48px;
+    }
+    .activity-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative; height: 300px;
+      cursor: pointer;
+    }
+    .activity-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .activity-card:hover .activity-bg { transform: scale(1.08); }
+    .activity-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(5,30,53,0.85) 0%, transparent 60%);
+      transition: all var(--transition);
+    }
+    .activity-card:hover .activity-overlay {
+      background: linear-gradient(to top, rgba(5,30,53,0.9) 0%, rgba(5,30,53,0.3) 100%);
+    }
+    .activity-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px;
+    }
+    .activity-icon {
+      width: 44px; height: 44px;
+      background: var(--turquoise); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 10px;
+      transform: translateY(8px); opacity: 0;
+      transition: all var(--transition);
+    }
+    .activity-card:hover .activity-icon { transform: translateY(0); opacity: 1; }
+    .activity-icon svg { color: #fff; }
+    .activity-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 600; color: #fff;
+    }
+    .activity-tag {
+      font-size: 0.78rem; color: rgba(255,255,255,0.65); margin-top: 4px;
+    }
+
+    /* ============================================================
+       WHY US / TESTIMONIALS
+    ============================================================ */
+    #why-us { background: var(--off-white); }
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center;
+    }
+    .why-visual {
+      position: relative;
+    }
+    .why-img-main {
+      width: 100%; aspect-ratio: 4/5;
+      border-radius: var(--radius); overflow: hidden;
+      background-image: url("https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80");
+      background-size: cover; background-position: center;
+    }
+    .why-img-float {
+      position: absolute; bottom: -24px; right: -24px;
+      width: 52%; aspect-ratio: 4/3;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background-image: url("https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=600&q=80");
+      background-size: cover; background-position: center;
+      border: 6px solid var(--white);
+      box-shadow: var(--shadow-md);
+    }
+    .why-badge-float {
+      position: absolute; top: 24px; left: -24px;
+      background: var(--coral); color: #fff;
+      border-radius: var(--radius); padding: 16px 20px;
+      text-align: center; box-shadow: var(--shadow-md);
+    }
+    .why-badge-float .num {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 700; line-height: 1;
+    }
+    .why-badge-float .label { font-size: 0.78rem; opacity: 0.9; }
+
+    .why-points { display: flex; flex-direction: column; gap: 24px; margin-top: 36px; }
+    .why-point {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .why-point-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--ocean-teal), var(--turquoise));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-point-icon svg { color: #fff; }
+    .why-point-title {
+      font-weight: 600; font-size: 1rem; color: var(--ocean-deep); margin-bottom: 4px;
+    }
+    .why-point-desc { font-size: 0.88rem; color: var(--text-muted); }
+
+    /* ============================================================
+       ABOUT PAGE SECTION
+    ============================================================ */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .about-text p { color: var(--text-muted); margin-bottom: 16px; line-height: 1.8; }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px;
+    }
+    .about-stat {
+      background: var(--off-white); border-radius: var(--radius-sm);
+      padding: 20px; text-align: center;
+    }
+    .about-stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 700; color: var(--ocean-teal);
+    }
+    .about-stat-label { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
+    .about-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .about-img-grid .img-item {
+      border-radius: var(--radius-sm); overflow: hidden;
+      background-size: cover; background-position: center;
+    }
+    .about-img-grid .img-item:first-child { grid-column: 1/-1; height: 220px; }
+    .about-img-grid .img-item:not(:first-child) { height: 160px; }
+
+    /* ============================================================
+       FAQ SECTION
+    ============================================================ */
+    #faq { background: var(--off-white); }
+    .faq-wrap { max-width: 760px; margin: 48px auto 0; }
+    .faq-item {
+      background: var(--card-bg);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; cursor: pointer;
+      font-weight: 600; font-size: 0.97rem; color: var(--ocean-deep);
+      transition: color var(--transition);
+      gap: 12px;
+    }
+    .faq-q:hover { color: var(--ocean-teal); }
+    .faq-icon {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: var(--off-white); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition);
+    }
+    .faq-item.open .faq-icon { background: var(--ocean-teal); transform: rotate(45deg); }
+    .faq-item.open .faq-icon svg { color: #fff; }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 24px;
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.8;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 24px 20px; }
+
+    /* ============================================================
+       CONTACT SECTION
+    ============================================================ */
+    #contact { background: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; margin-top: 48px; }
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+    .contact-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .contact-item-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--ocean-teal), var(--turquoise));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-item-icon svg { color: #fff; }
+    .contact-item-label {
+      font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;
+    }
+    .contact-item-val { font-weight: 600; color: var(--ocean-deep); }
+
+    .map-placeholder {
+      background: var(--off-white); border-radius: var(--radius);
+      height: 200px; margin-top: 24px;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px dashed #c8dce8;
+      color: var(--text-muted); font-size: 0.9rem;
+      gap: 8px;
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: 0.82rem; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 13px 16px; border: 1.5px solid #dde6ed;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body); font-size: 0.95rem;
+      color: var(--text-dark); background: var(--off-white);
+      transition: border-color var(--transition);
+    }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none; border-color: var(--ocean-teal);
+      background: #fff;
+    }
+    .form-group.error input,
+    .form-group.error textarea { border-color: var(--coral); }
+    .form-error-msg { font-size: 0.78rem; color: var(--coral); margin-top: 2px; }
+
+    .form-success {
+      display: none; text-align: center; padding: 32px;
+      background: #e8f8f0; border-radius: var(--radius);
+    }
+    .form-success.show { display: block; }
+    .form-success-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .form-success h3 { color: #2d7a4f; margin-bottom: 8px; }
+    .form-success p { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--ocean-deep); color: rgba(255,255,255,0.75);
+    }
+    .footer-main {
+      padding: 72px 0 48px;
+      display: grid;
+      grid-template-columns: 1.6fr repeat(3, 1fr);
+      gap: 48px;
+    }
+    .footer-brand p { font-size: 0.88rem; margin: 16px 0 24px; line-height: 1.8; }
+    .footer-social { display: flex; gap: 12px; }
+    .social-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition);
+      font-size: 0.88rem; color: rgba(255,255,255,0.7);
+    }
+    .social-icon:hover {
+      background: var(--turquoise); color: #fff;
+      transform: translateY(-2px);
+    }
+    .footer-col h4 {
+      font-weight: 600; color: #fff; margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      font-size: 0.88rem; color: rgba(255,255,255,0.6);
+      transition: color var(--transition);
+    }
+    .footer-col ul li a:hover { color: var(--turquoise); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 24px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.82rem;
+    }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a { color: rgba(255,255,255,0.5); transition: color var(--transition); }
+    .footer-bottom-links a:hover { color: var(--turquoise); }
+
+    /* ============================================================
+       MODAL (Booking)
+    ============================================================ */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(5,30,53,0.8); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white); border-radius: var(--radius);
+      padding: 40px; width: 100%; max-width: 520px;
+      position: relative; max-height: 90vh; overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 32px; height: 32px;
+      background: var(--off-white); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all var(--transition);
+    }
+    .modal-close:hover { background: #f0d0c5; }
+    .modal h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem; color: var(--ocean-deep); margin-bottom: 6px;
+    }
+    .modal p.modal-sub { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 24px; }
+
+    /* ============================================================
+       TOAST NOTIFICATION
+    ============================================================ */
+    #toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 3000;
+      background: var(--ocean-deep); color: #fff;
+      padding: 14px 22px; border-radius: var(--radius-sm);
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: var(--shadow-md);
+      transform: translateY(80px); opacity: 0;
+      transition: all var(--transition);
+      font-size: 0.9rem;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast.success .toast-icon { color: #4ade80; }
+    #toast.error .toast-icon { color: var(--coral); }
+
+    /* ============================================================
+       BACK TO TOP
+    ============================================================ */
+    #back-top {
+      position: fixed; bottom: 80px; right: 24px; z-index: 1000;
+      width: 44px; height: 44px;
+      background: var(--ocean-teal); color: #fff;
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transform: translateY(20px); opacity: 0;
+      transition: all var(--transition);
+    }
+    #back-top.show { transform: translateY(0); opacity: 1; }
+    #back-top:hover { background: var(--ocean-deep); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .why-grid, .about-grid { grid-template-columns: 1fr; }
+      .why-visual { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-main { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .quick-book-grid { grid-template-columns: 1fr 1fr; }
+      .quick-book-grid > *:last-child { grid-column: 1/-1; }
+      .hero-stats { gap: 28px; flex-wrap: wrap; }
+      .about-img-grid .img-item:first-child { height: 180px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-main { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .why-img-float, .why-badge-float { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .quick-book-grid { grid-template-columns: 1fr; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .activities-grid { grid-template-columns: 1fr 1fr; }
+      .hero-title { font-size: 2.6rem; }
+    }
+
+    /* ============================================================
+       ANIMATION UTILITIES
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       LOADING SCREEN
+  ═══════════════════════════════════════════════ -->
+  <div id="loading-screen">
+    <div class="loader-logo">🌊 Andaman Escapes</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════════ -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-icon">🏝️</div>
+          Andaman<span>Escapes</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#activities">Activities</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-cta">
+          <button class="btn btn-outline" onclick="openBookingModal()">Book Now</button>
+        </div>
+
+        <!-- Hamburger for mobile -->
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-close" onclick="toggleMobileMenu()">✕</div>
+    <a href="#services"      onclick="toggleMobileMenu()">Services</a>
+    <a href="#destinations"  onclick="toggleMobileMenu()">Destinations</a>
+    <a href="#packages"      onclick="toggleMobileMenu()">Packages</a>
+    <a href="#activities"    onclick="toggleMobileMenu()">Activities</a>
+    <a href="#about"         onclick="toggleMobileMenu()">About</a>
+    <a href="#contact"       onclick="toggleMobileMenu()">Contact</a>
+    <button class="btn btn-primary" onclick="openBookingModal(); toggleMobileMenu()">Book Now</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════════ -->
+  <section id="hero">
+    <!-- Image Slider -->
+    <div class="hero-slides">
+      <div class="hero-slide slide-1 active"></div>
+      <div class="hero-slide slide-2"></div>
+      <div class="hero-slide slide-3"></div>
+    </div>
+
+    <div class="container hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Based in Port Blair · Andaman &amp; Nicobar Islands
+      </div>
+
+      <h1 class="hero-title">
+        Discover the<br/>
+        <em>Jewel Islands</em><br/>
+        of India
+      </h1>
+
+      <p class="hero-sub">
+        Pristine beaches, crystal-clear waters, and unforgettable adventures — curated exclusively for you by local experts who call Andaman home.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#packages" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          View Packages
+        </a>
+        <button class="btn btn-outline" onclick="openBookingModal()">
+          Book Now →
+        </button>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">15<span>+</span></div>
+          <div class="hero-stat-label">Tour Packages</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">8<span>k+</span></div>
+          <div class="hero-stat-label">Happy Travelers</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">12<span>yr</span></div>
+          <div class="hero-stat-label">Of Experience</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">4.9<span>★</span></div>
+          <div class="hero-stat-label">Avg. Rating</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slider Dots -->
+    <div class="hero-dots">
+      <div class="dot active" onclick="goToSlide(0)"></div>
+      <div class="dot"        onclick="goToSlide(1)"></div>
+      <div class="dot"        onclick="goToSlide(2)"></div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       QUICK BOOK BAR
+  ═══════════════════════════════════════════════ -->
+  <div class="container">
+    <div class="quick-book reveal">
+      <div class="quick-book-grid">
+        <div class="qb-field">
+          <label>Destination</label>
+          <select>
+            <option>Select Island</option>
+            <option>Port Blair</option>
+            <option>Havelock Island</option>
+            <option>Neil Island</option>
+            <option>Baratang Island</option>
+            <option>Ross Island</option>
+          </select>
+        </div>
+        <div class="qb-field">
+          <label>Check In</label>
+          <input type="date" />
+        </div>
+        <div class="qb-field">
+          <label>Duration</label>
+          <select>
+            <option>Select Duration</option>
+            <option>2N/3D</option>
+            <option>3N/4D</option>
+            <option>4N/5D</option>
+            <option>5N/6D</option>
+            <option>Custom</option>
+          </select>
+        </div>
+        <div class="qb-field">
+          <label>Travelers</label>
+          <input type="number" min="1" value="2" placeholder="No. of persons" />
+        </div>
+        <button class="btn btn-primary" onclick="openBookingModal()">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SERVICES SECTION
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="reveal">
+        <div class="badge">What We Offer</div>
+        <h2 class="section-title">Everything You Need<br/>for a <em>Perfect Island Trip</em></h2>
+        <p class="section-subtitle">From the moment you land at Veer Savarkar Airport to your last sunset in paradise — we've got every detail covered.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          </div>
+          <div class="service-name">Hotel Booking</div>
+          <div class="service-desc">Luxury resorts to budget stays — handpicked for comfort and location.</div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 17H5a2 2 0 01-2-2V9a2 2 0 012-2h11l4 4v4a2 2 0 01-2 2h-1m-5-4h.01"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <div class="service-name">Cab Services</div>
+          <div class="service-desc">Reliable, air-conditioned island transfers with friendly local drivers.</div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          </div>
+          <div class="service-name">Cruise Booking</div>
+          <div class="service-desc">Government & private ferries between islands, pre-booked and confirmed.</div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-4">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="service-name">Bike Rental</div>
+          <div class="service-desc">Explore islands on your own terms — scooters and motorbikes available.</div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+          </div>
+          <div class="service-name">Tour Packages</div>
+          <div class="service-desc">Carefully designed itineraries for every type of traveler and budget.</div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/></svg>
+          </div>
+          <div class="service-name">Custom Planning</div>
+          <div class="service-desc">Tell us your dream trip — we'll build the perfect personalised itinerary.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       DESTINATIONS SECTION
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="destinations">
+    <div class="container">
+      <div class="reveal">
+        <div class="badge">Island Destinations</div>
+        <h2 class="section-title">Explore the <em>Archipelago's</em><br/>Finest Islands</h2>
+        <p class="section-subtitle">Each island has its own personality — from bustling Port Blair to the serene solitude of Neil.</p>
+      </div>
+
+      <div class="dest-grid">
+
+        <!-- Port Blair -->
+        <div class="dest-card reveal reveal-delay-1">
+          <div class="dest-img-wrap">
+            <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=600&q=80')">
+              <div class="dest-badge">Capital City</div>
+            </div>
+          </div>
+          <div class="dest-info">
+            <h3>Port Blair</h3>
+            <div class="dest-meta">
+              <span>🌅 Best: Oct–May</span>
+              <span>📍 South Andaman</span>
+            </div>
+            <p>The vibrant gateway to the Andaman Islands — home to the historic Cellular Jail, the Anthropological Museum, and the bustling Aberdeen Bazaar.</p>
+            <button class="btn btn-ghost" onclick="openBookingModal('Port Blair')">Explore →</button>
+          </div>
+        </div>
+
+        <!-- Havelock Island -->
+        <div class="dest-card reveal reveal-delay-2">
+          <div class="dest-img-wrap">
+            <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80')">
+              <div class="dest-badge">Most Popular</div>
+            </div>
+          </div>
+          <div class="dest-info">
+            <h3>Havelock Island</h3>
+            <div class="dest-meta">
+              <span>🌅 Best: Nov–Apr</span>
+              <span>📍 Ritchie's Archipelago</span>
+            </div>
+            <p>Radhanagar Beach — Asia's finest — and Elephant Beach's snorkelling paradise make Havelock the crown jewel of the Andamans.</p>
+            <button class="btn btn-ghost" onclick="openBookingModal('Havelock Island')">Explore →</button>
+          </div>
+        </div>
+
+        <!-- Neil Island -->
+        <div class="dest-card reveal reveal-delay-3">
+          <div class="dest-img-wrap">
+            <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80')">
+              <div class="dest-badge">Hidden Gem</div>
+            </div>
+          </div>
+          <div class="dest-info">
+            <h3>Neil Island</h3>
+            <div class="dest-meta">
+              <span>🌅 Best: Oct–May</span>
+              <span>📍 South Andaman</span>
+            </div>
+            <p>Often called the "Vegetable Bowl of the Andamans," Neil is a tranquil retreat known for its natural coral bridges and intimate, uncrowded beaches.</p>
+            <button class="btn btn-ghost" onclick="openBookingModal('Neil Island')">Explore →</button>
+          </div>
+        </div>
+
+        <!-- Baratang Island -->
+        <div class="dest-card reveal reveal-delay-4">
+          <div class="dest-img-wrap">
+            <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80')">
+              <div class="dest-badge">Adventure</div>
+            </div>
+          </div>
+          <div class="dest-info">
+            <h3>Baratang Island</h3>
+            <div class="dest-meta">
+              <span>🌅 Best: Jan–May</span>
+              <span>📍 Middle Andaman</span>
+            </div>
+            <p>A thrilling journey through the dense mangrove forests leads to otherworldly limestone caves and the legendary mud volcanoes of Baratang.</p>
+            <button class="btn btn-ghost" onclick="openBookingModal('Baratang Island')">Explore →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       PACKAGES SECTION
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="packages">
+    <div class="container">
+      <div class="reveal">
+        <div class="badge">Tour Packages</div>
+        <h2 class="section-title" style="color:#fff">Curated Itineraries for<br/>Every <em>Type of Explorer</em></h2>
+        <p class="section-subtitle">From budget-conscious adventurers to luxury seekers — our packages are crafted for real island living.</p>
+      </div>
+
+      <!-- Packages will be injected here by JS -->
+      <div class="packages-grid" id="packagesGrid">
+        <!-- Skeleton Loaders -->
+        <div class="pkg-skeleton reveal reveal-delay-1"></div>
+        <div class="pkg-skeleton reveal reveal-delay-2"></div>
+        <div class="pkg-skeleton reveal reveal-delay-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       ACTIVITIES SECTION
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="activities">
+    <div class="container">
+      <div class="reveal">
+        <div class="badge">Island Adventures</div>
+        <h2 class="section-title">Thrilling Activities<br/>in <em>Nature's Playground</em></h2>
+        <p class="section-subtitle">Andaman's diverse marine and terrestrial ecosystems offer adventures you'll talk about for a lifetime.</p>
+      </div>
+
+      <div class="activities-grid">
+
+        <div class="activity-card reveal reveal-delay-1">
+          <div class="activity-bg" style="background-image:url('https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=600&q=80')"></div>
+          <div class="activity-overlay"></div>
+          <div class="activity-content">
+            <div class="activity-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="activity-name">Scuba Diving</div>
+            <div class="activity-tag">From ₹3,500 · PADI Certified</div>
+          </div>
+        </div>
+
+        <div class="activity-card reveal reveal-delay-2">
+          <div class="activity-bg" style="background-image:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=600&q=80')"></div>
+          <div class="activity-overlay"></div>
+          <div class="activity-content">
+            <div class="activity-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            </div>
+            <div class="activity-name">Snorkeling</div>
+            <div class="activity-tag">From ₹900 · Equipment Included</div>
+          </div>
+        </div>
+
+        <div class="activity-card reveal reveal-delay-3">
+          <div class="activity-bg" style="background-image:url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80')"></div>
+          <div class="activity-overlay"></div>
+          <div class="activity-content">
+            <div class="activity-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3l14 9-14 9V3z"/></svg>
+            </div>
+            <div class="activity-name">Parasailing</div>
+            <div class="activity-tag">From ₹2,200 · Bird's Eye View</div>
+          </div>
+        </div>
+
+        <div class="activity-card reveal reveal-delay-4">
+          <div class="activity-bg" style="background-image:url('https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=600&q=80')"></div>
+          <div class="activity-overlay"></div>
+          <div class="activity-content">
+            <div class="activity-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div class="activity-name">Sea Kayaking</div>
+            <div class="activity-tag">From ₹1,200 · Mangrove Trails</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       WHY CHOOSE US
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="why-us">
+    <div class="container">
+      <div class="why-grid">
+        <!-- Visual side -->
+        <div class="why-visual reveal">
+          <div class="why-img-main"></div>
+          <div class="why-img-float"></div>
+          <div class="why-badge-float">
+            <div class="num">12+</div>
+            <div class="label">Years of<br/>Island Expertise</div>
+          </div>
+        </div>
+
+        <!-- Content side -->
+        <div class="reveal">
+          <div class="badge">Why Choose Us</div>
+          <h2 class="section-title">We Are <em>Locals</em><br/>Who Love This Land</h2>
+          <p class="section-subtitle">We're not just a travel company — we are passionate Andamanis who've spent years exploring every corner of these islands, so you don't have to guess.</p>
+
+          <div class="why-points">
+            <div class="why-point">
+              <div class="why-point-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <div class="why-point-title">Deep Local Knowledge</div>
+                <div class="why-point-desc">Our team lives here. We know the secret beaches, the best local eateries, and the real story behind every landmark.</div>
+              </div>
+            </div>
+            <div class="why-point">
+              <div class="why-point-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <div>
+                <div class="why-point-title">Safety First, Always</div>
+                <div class="why-point-desc">All activity operators are certified, vehicles are maintained, and every itinerary has contingency planning built in.</div>
+              </div>
+            </div>
+            <div class="why-point">
+              <div class="why-point-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <div class="why-point-title">No Hidden Costs</div>
+                <div class="why-point-desc">What you see is what you pay. Our packages include all transfers, permits, and activities — no nasty surprises.</div>
+              </div>
+            </div>
+            <div class="why-point">
+              <div class="why-point-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
+              </div>
+              <div>
+                <div class="why-point-title">24/7 On-Trip Support</div>
+                <div class="why-point-desc">A dedicated local contact is always a call away — whether you need restaurant advice or urgent assistance.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       ABOUT US SECTION
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-text reveal">
+          <div class="badge">Our Story</div>
+          <h2 class="section-title">Born in the Islands,<br/><em>Passionate</em> About Travel</h2>
+          <p>Andaman Escapes was founded in 2012 by a group of native Andamanis who believed that travellers deserved authentic, expertly guided island experiences — not cookie-cutter packages sold from mainland offices.</p>
+          <p>Over a decade later, we've grown into one of the most trusted travel companies in the Andaman & Nicobar Islands, helping thousands of families, couples, and solo travellers discover the magic of this archipelago.</p>
+          <p>Every itinerary we create comes from genuine love for these islands and a commitment to responsible, sustainable tourism that benefits local communities.</p>
+
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="about-stat-num">8,400+</div>
+              <div class="about-stat-label">Happy Travelers</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-num">15+</div>
+              <div class="about-stat-label">Tour Packages</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-num">35+</div>
+              <div class="about-stat-label">Island Experts</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-num">4.9★</div>
+              <div class="about-stat-label">Avg. Rating</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="about-img-grid">
+            <div class="img-item" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80'); background-size:cover;"></div>
+            <div class="img-item" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80'); background-size:cover;"></div>
+            <div class="img-item" style="background-image:url('https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=400&q=80'); background-size:cover;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FAQ SECTION
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="faq">
+    <div class="container" style="text-align:center">
+      <div class="reveal">
+        <div class="badge">Frequently Asked</div>
+        <h2 class="section-title">Answers to Your<br/><em>Island Questions</em></h2>
+        <p class="section-subtitle" style="margin:12px auto 0">Everything you want to know before planning your perfect Andaman getaway.</p>
+      </div>
+
+      <div class="faq-wrap">
+
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            When is the best time to visit the Andaman Islands?
+            <div class="faq-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">The ideal time to visit is between <strong>October and May</strong>, when the sea is calm and the skies are clear. December to February are peak season months with the most pleasant weather. Avoid June through September as the monsoon makes sea crossings rough and many activities are suspended.</div>
+        </div>
+
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            How do I reach the Andaman Islands?
+            <div class="faq-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a"><strong>By Air:</strong> Direct flights operate from Chennai, Kolkata, Delhi, Bengaluru, and Hyderabad to Veer Savarkar International Airport, Port Blair. The flight takes approximately 2–2.5 hours from Chennai. <strong>By Sea:</strong> Passenger ships depart from Kolkata, Chennai, and Visakhapatnam, but this takes 3–4 days and is recommended only for budget travellers with plenty of time.</div>
+        </div>
+
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            What documents do I need to visit Andaman?
+            <div class="faq-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">Indian nationals need a valid government-issued photo ID (Aadhaar, Passport, or Voter ID) and a confirmed flight ticket. Foreign nationals require a valid passport and visa. A Restricted Area Permit (RAP) is automatically granted at the airport for 30 days for most foreign nationals (some restricted islands require additional permits). We assist with all permit requirements as part of our packages.</div>
+        </div>
+
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            Are the Andaman Islands safe for solo travellers and women?
+            <div class="faq-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">Absolutely. The Andaman Islands are widely regarded as one of the safest destinations in India. The local population is warm and hospitable. With our packages, a dedicated guide is always available, and we maintain 24/7 on-trip support for all our guests.</div>
+        </div>
+
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            Can I customise a tour package for a group or family?
+            <div class="faq-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">Yes! This is one of our specialities. We offer fully customised itineraries for families, couples, corporate groups, and adventure teams. Simply contact us with your group size, preferred dates, budget, and any special requirements — we'll create a personalised plan within 24 hours.</div>
+        </div>
+
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            Is there mobile network and internet connectivity on the islands?
+            <div class="faq-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">BSNL has the best coverage across most islands. Jio and Airtel work well in Port Blair and Havelock. Internet speed is improving but remains slower than mainland India — consider this a feature, not a bug! Most hotels offer Wi-Fi, though speeds vary. We recommend embracing the digital detox as part of the island experience.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       CONTACT SECTION
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="badge">Get In Touch</div>
+        <h2 class="section-title">Let's Plan Your<br/><em>Dream Island Trip</em></h2>
+        <p class="section-subtitle" style="margin:12px auto 0">Drop us a message and our island specialists will get back to you within a few hours.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="reveal">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Phone</div>
+                <div class="contact-item-val">+91 96798 81976</div>
+                 <div class="contact-item-val">+91 85093 92950</div>
+                  <div class="contact-item-val">+91 94742 97767</div>
+                <div style="font-size:0.82rem;color:var(--text-muted);margin-top:2px">Mon–Sun, 6am to 10pm IST</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Email</div>
+                <div class="contact-item-val">andamanescapespgr@gmail.com</div>
+                <div style="font-size:0.82rem;color:var(--text-muted);margin-top:2px">We reply within 1 hours</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Office Address</div>
+                <div class="contact-item-val">Rajaji Nagar, Garacharma</div>
+                <div style="font-size:0.82rem;color:var(--text-muted);margin-top:2px">Sri Vijaya Puram , Andaman & Nicobar — 744105</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Placeholder -->
+          <div class="map-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+            Map — Rajaji Nagar, Garacharma,Sri Vijaya Puram
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="reveal reveal-delay-2">
+          <div id="contactSuccess" class="form-success">
+            <div class="form-success-icon">✅</div>
+            <h3>Message Sent!</h3>
+            <p>Thank you for reaching out. Our team will get back to you within 4 hours.</p>
+          </div>
+
+          <form class="contact-form" id="contactForm" onsubmit="submitContact(event)" novalidate>
+            <div class="form-row">
+              <div class="form-group" id="fg-name">
+                <label for="c-name">Your Name *</label>
+                <input type="text" id="c-name" name="name" placeholder="Ravi Sharma" required />
+                <div class="form-error-msg"></div>
+              </div>
+              <div class="form-group" id="fg-email">
+                <label for="c-email">Email Address *</label>
+                <input type="email" id="c-email" name="email" placeholder="ravi@example.com" required />
+                <div class="form-error-msg"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="c-phone">Phone Number</label>
+              <input type="tel" id="c-phone" name="phone" placeholder="+91 98765 43210" />
+            </div>
+            <div class="form-group">
+              <label for="c-subject">Subject *</label>
+              <select id="c-subject" name="subject">
+                <option value="">Select a topic…</option>
+                <option>Tour Package Inquiry</option>
+                <option>Custom Itinerary Request</option>
+                <option>Hotel Booking</option>
+                <option>Activity Booking</option>
+                <option>General Question</option>
+              </select>
+            </div>
+            <div class="form-group" id="fg-message">
+              <label for="c-message">Message *</label>
+              <textarea id="c-message" name="message" placeholder="Tell us about your trip plans, group size, preferred dates, and any special requirements…" required></textarea>
+              <div class="form-error-msg"></div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+              Send Message →
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:0">
+            <div class="nav-logo-icon">🏝️</div>
+            Andaman<span>Escapes</span>
+          </div>
+          <p>Your trusted local travel partner in the Andaman & Nicobar Islands. Crafting authentic island experiences since 2012.</p>
+          <div class="footer-social">
+            <a class="social-icon" href="#" title="Instagram">📸</a>
+            <a class="social-icon" href="#" title="Facebook">👍</a>
+            <a class="social-icon" href="#" title="WhatsApp">💬</a>
+            <a class="social-icon" href="#" title="YouTube">▶️</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Top Destinations</h4>
+          <ul>
+            <li><a href="#destinations">Port Blair</a></li>
+            <li><a href="#destinations">Havelock Island</a></li>
+            <li><a href="#destinations">Neil Island</a></li>
+            <li><a href="#destinations">Baratang Island</a></li>
+            <li><a href="#destinations">Ross Island</a></li>
+            <li><a href="#destinations">Diglipur</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><a href="tel:+91 9679881976">📞 +91 96798 81976</a></li>
+            <li><a href="tel:+91 8509392950">📞 +91 85093 92950</a></li>
+            <li><a href="tel:+91 9474297767">📞 +91 94742 97767</a></li>
+            <li><a href="mailto:hello@andamanescapes.in">✉️ andamanescapespgr@gmail.com</a></li>
+            <li><a href="#contact">📍 Rajaji Nagar, Garacharma,Sri Vijaya Puram</a></li>
+            <li style="margin-top:12px;color:rgba(255,255,255,0.4);font-size:0.82rem">Mon–Sat · 9am to 7pm IST</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2024 Andaman Escapes. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════
+       BOOKING MODAL
+  ═══════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="bookingModal" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal-close" onclick="closeBookingModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <h2>Book Your Trip</h2>
+      <p class="modal-sub">Fill in your details and we'll confirm your booking within 2 hours.</p>
+
+      <div id="bookingSuccess" class="form-success" style="display:none">
+        <div class="form-success-icon">🎉</div>
+        <h3>Booking Request Sent!</h3>
+        <p>We've received your enquiry. Our team will call you within 2 hours to confirm details.</p>
+      </div>
+
+      <form class="contact-form" id="bookingForm" onsubmit="submitBooking(event)" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" name="name" id="b-name" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" id="b-email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" name="phone" id="b-phone" placeholder="+91 98765 43210" required />
+        </div>
+        <div class="form-group">
+          <label>Select Package</label>
+          <select name="package" id="b-package">
+            <option value="">Choose a package…</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Travel Date *</label>
+            <input type="date" name="date" id="b-date" required />
+          </div>
+          <div class="form-group">
+            <label>No. of Travelers</label>
+            <input type="number" name="travelers" id="b-travelers" min="1" value="2" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Special Requests</label>
+          <textarea name="notes" placeholder="Honeymoon, anniversary, dietary needs, accessibility requirements…" style="min-height:80px"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+          Confirm Booking Request →
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast">
+    <span class="toast-icon">✓</span>
+    <span id="toast-msg">Done!</span>
+  </div>
+
+  <!-- Back to Top -->
+  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+  </button>
+
+  <!-- ═══════════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════════ -->
+  <script>
+    // ── CONFIG ────────────────────────────────────────
+    // Change this to your backend URL when running locally
+    const API_BASE = 'http://localhost:3000';
+
+    // ── LOADING SCREEN ────────────────────────────────
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loading-screen').classList.add('hidden');
+        initReveal(); // Start scroll animations
+      }, 2000);
+    });
+
+    // ── NAVBAR SCROLL ─────────────────────────────────
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      const backTop = document.getElementById('back-top');
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+        backTop.classList.add('show');
+      } else {
+        nav.classList.remove('scrolled');
+        backTop.classList.remove('show');
+      }
+    });
+
+    // ── MOBILE MENU ───────────────────────────────────
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const burger = document.getElementById('hamburger');
+      menu.classList.toggle('open');
+      burger.classList.toggle('active');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+
+    // ── HERO IMAGE SLIDER ─────────────────────────────
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots   = document.querySelectorAll('.dot');
+
+    function goToSlide(index) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+      goToSlide((currentSlide + 1) % slides.length);
+    }
+
+    // Auto-advance every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // ── SCROLL REVEAL ─────────────────────────────────
+    function initReveal() {
+      const els = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(el => observer.observe(el));
+    }
+
+    // ── FAQ ACCORDION ─────────────────────────────────
+    function toggleFaq(item) {
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      // Open clicked if it wasn't already open
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // ── BOOKING MODAL ─────────────────────────────────
+    function openBookingModal(destination) {
+      document.getElementById('bookingModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // Pre-fill destination if given
+      if (destination) {
+        const pkg = document.getElementById('b-package');
+        // Try to match destination name in package options
+        for (let opt of pkg.options) {
+          if (opt.text.toLowerCase().includes(destination.toLowerCase())) {
+            pkg.value = opt.value;
+            break;
+          }
+        }
+      }
+    }
+
+    function closeBookingModal() {
+      document.getElementById('bookingModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnOverlay(e) {
+      if (e.target === document.getElementById('bookingModal')) closeBookingModal();
+    }
+
+    // ── FETCH & RENDER PACKAGES ───────────────────────
+    async function loadPackages() {
+      const grid = document.getElementById('packagesGrid');
+
+      try {
+        const res = await fetch(`${API_BASE}/packages`);
+        if (!res.ok) throw new Error('Server error');
+        const packages = await res.json();
+        renderPackages(packages, grid);
+        populateBookingSelect(packages);
+      } catch (err) {
+        // Fallback to static mock data if backend is unreachable
+        console.warn('Backend unreachable — using mock data', err);
+        renderPackages(MOCK_PACKAGES, grid);
+        populateBookingSelect(MOCK_PACKAGES);
+      }
+    }
+
+    function renderPackages(packages, grid) {
+      grid.innerHTML = '';
+      packages.forEach((pkg, i) => {
+        const card = document.createElement('div');
+        card.className = `pkg-card reveal reveal-delay-${(i%3)+1}`;
+        card.innerHTML = `
+          ${pkg.popular ? '<div class="pkg-popular">Most Popular</div>' : ''}
+          <div class="pkg-header">
+            <div class="pkg-duration">${pkg.duration}</div>
+            <div class="pkg-name">${pkg.name}</div>
+            <div class="pkg-price-wrap">
+              <div class="pkg-price">₹${Number(pkg.price).toLocaleString('en-IN')}</div>
+              <div class="pkg-price-note">per person · all inclusive</div>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-features">
+              ${pkg.features.map(f => `
+                <div class="pkg-feat">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  ${f}
+                </div>
+              `).join('')}
+            </div>
+            <button class="btn btn-primary" onclick="openBookingModal()">Book Now →</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      initReveal(); // Re-init for newly added cards
+    }
+
+    function populateBookingSelect(packages) {
+      const sel = document.getElementById('b-package');
+      packages.forEach(pkg => {
+        const opt = document.createElement('option');
+        opt.value = pkg._id || pkg.id;
+        opt.textContent = `${pkg.duration} — ${pkg.name} (₹${Number(pkg.price).toLocaleString('en-IN')})`;
+        sel.appendChild(opt);
+      });
+    }
+
+    // ── MOCK PACKAGES (fallback if backend offline) ───
+    const MOCK_PACKAGES = [
+      {
+        id: 'pkg1', name: 'Port Blair Explorer',
+        duration: '2 Nights / 3 Days', price: 8999,
+        popular: false,
+        features: [
+          'Cellular Jail Light & Sound Show',
+          'Corbyn\'s Cove & Chidiya Tapu',
+          'Airport transfers included',
+          'Government-approved guide',
+          'Daily breakfast & dinner'
+        ]
+      },
+      {
+        id: 'pkg2', name: 'Havelock Island Escape',
+        duration: '3 Nights / 4 Days', price: 14999,
+        popular: true,
+        features: [
+          'Radhanagar Beach sunrise walk',
+          'Elephant Beach snorkelling',
+          'Port Blair sightseeing day',
+          'Ferry tickets (both ways)',
+          'All meals included',
+          '4★ beachfront resort stay'
+        ]
+      },
+      {
+        id: 'pkg3', name: 'Complete Andaman Tour',
+        duration: '5 Nights / 6 Days', price: 24999,
+        popular: false,
+        features: [
+          'Port Blair + Havelock + Neil Islands',
+          'Barren Island volcano cruise',
+          'Baratang limestone caves trip',
+          'All inter-island ferries included',
+          'Scuba diving & snorkelling sessions',
+          'Full board meals throughout',
+          'Dedicated English-speaking guide'
+        ]
+      }
+    ];
+
+    // ── FORM SUBMISSION — CONTACT ──────────────────────
+    async function submitContact(e) {
+      e.preventDefault();
+      const form = e.target;
+      if (!validateContactForm()) return;
+
+      const data = {
+        name:    document.getElementById('c-name').value,
+        email:   document.getElementById('c-email').value,
+        phone:   document.getElementById('c-phone').value,
+        subject: document.getElementById('c-subject').value,
+        message: document.getElementById('c-message').value
+      };
+
+      try {
+        const res = await fetch(`${API_BASE}/contact`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error();
+        form.style.display = 'none';
+        document.getElementById('contactSuccess').classList.add('show');
+        showToast('Message sent! We\'ll be in touch soon.', 'success');
+      } catch {
+        // Show success UX even if backend is down (for demo purposes)
+        form.style.display = 'none';
+        document.getElementById('contactSuccess').classList.add('show');
+        showToast('Message received — we\'ll respond shortly!', 'success');
+      }
+    }
+
+    function validateContactForm() {
+      let valid = true;
+      const name    = document.getElementById('c-name');
+      const email   = document.getElementById('c-email');
+      const message = document.getElementById('c-message');
+
+      const nameGrp = document.getElementById('fg-name');
+      const emailGrp = document.getElementById('fg-email');
+      const msgGrp  = document.getElementById('fg-message');
+
+      [nameGrp, emailGrp, msgGrp].forEach(g => {
+        g.classList.remove('error');
+        g.querySelector('.form-error-msg').textContent = '';
+      });
+
+      if (!name.value.trim()) {
+        nameGrp.classList.add('error');
+        nameGrp.querySelector('.form-error-msg').textContent = 'Name is required.';
+        valid = false;
+      }
+      if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        emailGrp.classList.add('error');
+        emailGrp.querySelector('.form-error-msg').textContent = 'Please enter a valid email.';
+        valid = false;
+      }
+      if (!message.value.trim()) {
+        msgGrp.classList.add('error');
+        msgGrp.querySelector('.form-error-msg').textContent = 'Message cannot be empty.';
+        valid = false;
+      }
+      return valid;
+    }
+
+    // ── FORM SUBMISSION — BOOKING ──────────────────────
+    async function submitBooking(e) {
+      e.preventDefault();
+      const data = {
+        name:      document.getElementById('b-name').value,
+        email:     document.getElementById('b-email').value,
+        phone:     document.getElementById('b-phone').value,
+        package:   document.getElementById('b-package').value,
+        date:      document.getElementById('b-date').value,
+        travelers: document.getElementById('b-travelers').value
+      };
+
+      if (!data.name || !data.email || !data.phone || !data.date) {
+        showToast('Please fill in all required fields.', 'error');
+        return;
+      }
+
+      try {
+        await fetch(`${API_BASE}/booking`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      } catch { /* Backend may be offline in demo */ }
+
+      // Show success regardless for demo
+      document.getElementById('bookingForm').style.display = 'none';
+      const success = document.getElementById('bookingSuccess');
+      success.style.display = 'block';
+      success.classList.add('show');
+      showToast('Booking request received! 🎉', 'success');
+    }
+
+    // ── TOAST NOTIFICATION ────────────────────────────
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').textContent = msg;
+      toast.className = `show ${type}`;
+      toast.querySelector('.toast-icon').textContent = type === 'success' ? '✓' : '✕';
+      setTimeout(() => toast.className = '', 3500);
+    }
+
+    // ── INIT ──────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set min date for booking form to today
+      const today = new Date().toISOString().split('T')[0];
+      const dateInput = document.getElementById('b-date');
+      if (dateInput) dateInput.min = today;
+
+      // Load packages from API (or fallback)
+      loadPackages();
+    });
+  </script>
+
+</body>
+</html>
